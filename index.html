@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>来客受付</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #405c90;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+            width: 80%;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #405c90;
+            color: #fff;
+            border: 2px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .button.large {
+            width: 100%;
+            padding: 40px 40px;
+        }
+
+        .button.medium {
+            flex: 1;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button class="button large" data-visitor-type="お約束いただいているお客様">お約束いただいているお客様</button>
+        <div class="button-row">
+            <button class="button medium" data-visitor-type="配送業者の方">配送業者の方</button>
+            <button class="button medium" data-visitor-type="採用面接の方">採用面接の方</button>
+            <button class="button medium" data-visitor-type="お約束のない方">お約束のない方</button>
+        </div>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('.button');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const visitorType = this.getAttribute('data-visitor-type');
+
+                // TODO API Gatewayのエンドポイントを呼び出す
+                fetch('ENDPOINT_TO_API_GATEWAY', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ type: visitorType })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("ありがとうございます。\n担当者が応答するまで少々お待ち下さい。");
+                    } else {
+                        alert('エラーが発生しました');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
+
