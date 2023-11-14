@@ -9,8 +9,10 @@
 ## 概要
 - 画面上の来客者の目的を入力するとSlackに通知が来るだけの機能
 - インフラ想定
-  - API Gateway URL → Lambda (index.js) → Slack Incoming Webhook URL
-  - S3等にホスティング (index.html)
+  - API Gateway URL → Lambda → Slack Incoming Webhook URL
+    - Lambda関数：/aws/lambda/office-reception-to-slack/index.js 
+  - S3等にホスティング
+    - /index.html のみ
 - 入用に付き、新幹線内でモックまで
 
 ## TODO
