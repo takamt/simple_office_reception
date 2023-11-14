@@ -2,7 +2,7 @@
   <br>
   <img src="https://github.com/takamt/simple_office_reception_to_slack/assets/25574045/7f11490c-30d2-4f53-967d-40b2a9a974c9">
   <br>
-  Simple Office Reception to Slack
+  Simple Office Reception
   <br>
 </h1>
 
